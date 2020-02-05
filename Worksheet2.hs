@@ -14,8 +14,8 @@
 
 module Worksheet2 where
 import Data.Char
-
-----------------------------------------------------------------------
+import Prelude hiding (replicate)
+------------------------- ---------------------------------------------
 -- Exercise 1: A phone book
 ---------------------------------------------------------------------
 
@@ -26,12 +26,14 @@ type PhoneBook = [Person]
 
 -- Part a)
 
---add :: Person -> PhoneBook -> PhoneBook
---add (myName,myPhoneNumber) [iM] = [iM, (myName,myPhoneNumber)] 
+add :: Person -> PhoneBook -> PhoneBook
+add (myName,myPhoneNumber) [(a,b)] = [(myName,myPhoneNumber)]++[(a,b)]
 
 
 --delete  :: Name -> PhoneBook -> PhoneBook
---delete ?
+--delete name (myName,phoneNumber)
+--name == myName   = []
+--otherwise        = [(myName,phoneNumber)]
 
 --  Part c)
 
@@ -69,8 +71,10 @@ withdraw (ni,age,balance) withdrawFromBalance
    | otherwise                      = error "not enough money"
 
 -- Part d)
---credit :: Bank -> [Customer]
---credit 
+credit :: Bank -> [Customer]
+credit [(ni,age,balance)]
+   | balance > 0  = [(ni,age,balance)]
+   | otherwise    = []
 
 
 -----------------------------------------------------------------
@@ -96,19 +100,24 @@ cubeOdds2 newList =  map cube (filter isOdd newList )
 -- Exercise 4. addIndex
 -----------------------------------------------------------------
 
---addIndex :: [Int] -> [(Int,Int)]
+addIndex :: [Int] -> [(Int,Int)]
+
+addIndex list = zip [1..]list
 
 ------------------------------------------------
 ---- Exercise 5. ?? 
 ---------------------------------
 
 {-consider
+f :: [Int] -> [Int]
 
 f x = [ 1 | y <- x]
 
 what is the type (use integers as base type)
 
-what does this function do and why?
+what does this function do and why? this function replace every item in list x with 1.
+
+what does [1..9] evaluate to [1,1,1,1,1,1,1,1,1]
 
 -}
 
@@ -117,9 +126,14 @@ what does this function do and why?
 ---- replicate 6.  
 ---------------------------------
 
---replicate :: Int -> String -> [String]
-
-
+replicate :: Int -> String -> [String]
+replicate number [] = []
+replicate 1 word = [word]
+replicate number word = word : replicate (number-1) word 
+  
 --repeat n string should repeat the input string n times
 -- example
 --replicate 3 "test" = ["test","test","test"]
+
+
+
