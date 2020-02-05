@@ -38,13 +38,12 @@ delete name myPhoneBook = [(name1,number)|(name1,number)<-myPhoneBook,name1/=nam
 
 --  Part c)
 
---find  :: Name -> PhoneBook -> [PhoneNumber]
---find ?
-
+find  :: Name -> PhoneBook -> [PhoneNumber]
+find  name myPhoneBook = [number|(name1,number)<-myPhoneBook,name1==name ]
 --  Part d)
 
---update :: Name ->  PhoneNumber -> PhoneNumber-> PhoneBook -> PhoneBook
---update ?
+update :: Name ->  PhoneNumber -> PhoneNumber-> PhoneBook -> PhoneBook
+update name oldPhoneNumber newPhoneNumber myPhoneBook = [(name,newPhoneNumber)|(name1,number)<-myPhoneBook,name1==name ]
 
 -----------------------------------------------------------------
 -- Exercise 2:  Customers of a Bank
@@ -127,12 +126,11 @@ what does [1..9] evaluate to [1,1,1,1,1,1,1,1,1]
 ---- replicate 6.  
 ---------------------------------
 
-replicate :: Int -> String -> [String]
-replicate number []    = []
-replicate 1 word       = [word]
-replicate number word  = replicate (number-1) word 
+replicate :: Int -> String -> [String] 
 
---replicate1 number1 word1  = [word1 | word1 <-(number1-1),number1>0]
+
+
+replicate number word  = [word| y<-[1..number]]
   
 --repeat n string should repeat the input string n times
 -- example
