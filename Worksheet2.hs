@@ -72,9 +72,9 @@ withdraw (ni,age,balance) withdrawFromBalance
 
 -- Part d)
 credit :: Bank -> [Customer]
-credit [(ni,age,balance)]
-   | balance > 0  = [(ni,age,balance)]
-   | otherwise    = []
+credit bankAccount = [(ni,age,balance) |(ni,age,balance)<-bankAccount, balance>0]
+   
+  
 
 
 -----------------------------------------------------------------
