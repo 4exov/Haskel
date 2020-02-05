@@ -4,7 +4,7 @@
 -- Created: January 2020, University of Leicester, UK
 -- handin 9.00 hr on paper on 6th February (assessed) 
 --------------------------------------------------------------------
--- Student Name
+-- Student Name: Vladislav
 -- Student Number
 --------------------------------------------------------------------
 --
@@ -27,13 +27,14 @@ type PhoneBook = [Person]
 -- Part a)
 
 add :: Person -> PhoneBook -> PhoneBook
-add (myName,myPhoneNumber) [(a,b)] = [(myName,myPhoneNumber)]++[(a,b)]
+
+add (myName,myPhoneNumber) myPhoneBook = [(myName,myPhoneNumber)]++myPhoneBook
 
 
---delete  :: Name -> PhoneBook -> PhoneBook
---delete name (myName,phoneNumber)
---name == myName   = []
---otherwise        = [(myName,phoneNumber)]
+delete  :: Name -> PhoneBook -> PhoneBook
+
+delete name myPhoneBook = [(name1,number)|(name1,number)<-myPhoneBook,name1/=name ]
+   
 
 --  Part c)
 
@@ -127,9 +128,11 @@ what does [1..9] evaluate to [1,1,1,1,1,1,1,1,1]
 ---------------------------------
 
 replicate :: Int -> String -> [String]
-replicate number [] = []
-replicate 1 word = [word]
-replicate number word = word : replicate (number-1) word 
+replicate number []    = []
+replicate 1 word       = [word]
+replicate number word  = replicate (number-1) word 
+
+--replicate1 number1 word1  = [word1 | word1 <-(number1-1),number1>0]
   
 --repeat n string should repeat the input string n times
 -- example
