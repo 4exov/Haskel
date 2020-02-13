@@ -46,15 +46,16 @@ britishPoundToEuro      x  = show(x * britishPoundToEuroRate)
 --Task 7
 --------------------------
 rawtext :: String
-rawtext = "\"This is a \\ \\ long string,\n \\ \\ spanning multiple lines\n in fact 3 lines!\" \n"
+rawtext = "\"This is a  \\ \\long string,\n\\ \\  spanning multiple lines\nin fact 3 lines!\" \n"
 
 
 
 
+flatten [] = []
+flatten (x:xs) = x ++flatten xs
 
 
-
-
+fd
 
 
 
