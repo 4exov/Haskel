@@ -1,4 +1,6 @@
 
+
+
 triangles       = [(a,b,c) | c <-[1..10], b <-[1..10], a <-[1..10]]
 
 rightTriangles' = [(a,b,c) | c <-[1..10], b <-[1..c], a <-[1..b], a^2 +b^2 == c^2]
@@ -38,6 +40,11 @@ feboNumber 0 = 0
 feboNumber 1 = 1
 feboNumber x = x + feboNumber(x-1)
    
+filter1 test []     = []
+filter1 test (l:ls) 
+   | test l = l : filter1 test ls
+   | otherwise = filter1 test ls
+
 
 
 
