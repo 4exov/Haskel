@@ -135,6 +135,6 @@ replicate number word  = [word| y<-[1..number]]
 --repeat n string should repeat the input string n times
 -- example
 --replicate 3 "test" = ["test","test","test"]
-
+get3rd (_,_,y) = y
 
 
