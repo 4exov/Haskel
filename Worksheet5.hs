@@ -83,9 +83,17 @@ type Tile = [String]
 
 
 makeTile :: Char -> Int -> [String]
+take1 :: Int -> [b] -> [b]
+take1 0 (x:xs)  = []
+take1 1 (x:xs)  = [x]
+take1 n (x:xs)  = [x] ++ take1 (n-1)(xs)
 makeTile a 0 = []
 makeTile a 1 = []
-makeTile a num = [a | c<-[1..num]] : makeTile a num(??)
+makeTile a n  
+ | n `mod` 2 == 0 = [a|c<-[1..n]] :take1 ((n-2)`div`2)(makeTile a n)
+ | n `mod` 2 == 1 = [a|c<-[1..n]] :take1 ((n-3)`div`2)(makeTile a n)
+
+
 
 -- Part b)
 
@@ -100,69 +108,49 @@ makeTile a num = [a | c<-[1..num]] : makeTile a num(??)
 
 -- here tile2 string should convert the tile ["****","****"]
 -- into the string "\n****\n****\n" (remember the newline character!)
--- tile2string ["****","****"] = "\n****\n****\n"
+--tile2string ["****","****"] = "\n****\n****\n"
 
---tile2string :: [String] -> String
-
-
+tile2string :: [String] -> String
+--tile2string (l:ls) = l : tile2string ls
+tile2string [] =""
+tile2string (z:zs) = "\n"++ z ++ tile2string zs
 -- Part c)
 
--- write a function vglue that glues two tiles vericall like
---           &&&      ***             &&&
--- gluing of &&& and  *** should give &&&
---                                    ***
---                                    ***
- 
 --vglue :: Tile -> Tile -> Tile
 
+vglue:: Tile -> Tile ->Tile
 
+--vglue a b = tile2string a ++ tile2string b
+vglue (a:as) (b:bs) = [a ++ b | a<-as, b<-bs]
 
 -- Part d)
+hglue:: Tile -> Tile ->Tile
+hglue [] [] = []
+--hglue (a:as) (b:bs) = "\n" ++ a ++ b ++hglue as bs
+hglue (a:as) (b:bs) = ["\n" ++ a ++ b | a<-as, b<-bs]
 
--- next write a function hglue that glues two tiles horizontally like
---           ***      ***             ******
--- gluing of *&* and  *** should give *&****
---           ***      ***             ******
+-- Part e) (??????????????????)
 
---hglue :: Tile -> Tile -> Tile
-
--- Part e)
-
--- Next we want to print chessboards
--- so we introduce a type of boards in the form 
--- of a list of a list of tiles.
+--col2tile :: [Tile]->Tile
+--col2tile 0 vglue a b = []
+col2tile  vglue a b = vglue a b ++ col2tile vglue a b
+--row2tile :: [Tile]->Tile
+--row2tile 0 hglue a b = []
+row2tile  hglue a b = vglue a b ++ row2tile hglue a b
 
 type Board = [[Tile]]
 
---Next function: delete comments after writing board2tile
---printBoard :: Board -> IO()
---printBoard board = printTile (board2tile board )
-
--- to print a board we first glue all its tiles together
--- using a function board2tile :: Board -> Tile
--- we need to help functions
---
--- col2tile  will glue a column of tiles vertically to a tile
-
---col2tile :: [Tile]->Tile
-
-
-
--- row2tile  will glue a row of tiles horizontally to a tile
-
---row2tile :: [Tile]->Tile
-
-
--- Part f)
+-- Part f)(??????????????????)
 
 -- So, if we think of a board as a column of rows of tiles,
 -- then we can convert a board into a tile using  
 -- col2tile and row2tile
+--Board = [[Tile]]
 
 --board2tile :: Board ->Tile
 
 
--- Part g)
+-- Part g)(??????????????????)
 
 -- if we can now make a function that "prints" an adge around a tile,
 --  we can print boards with an edge.
@@ -181,48 +169,7 @@ type Board = [[Tile]]
 -- edge (makeTile '*' 4) = [".----.","|****|","|****|",".----."]
 
 --edge :: Tile -> Tile
+--edge a b = ".----." : makeTile a b ++ head edge a b
 
+-- Part h)(??????????????????)
 
--- Part h)
-
--- Finally: write a function that creates an nxn chessboard of 
--- "white" tiles of the form makeTile ' ' n
--- "black" tiles of the form makeTile '*' n
--- surrounded by a nice edge and
--- such that the square at the bottom left is black
--- EG chessboard 3 should give a tile that prints like
--- .----------------.
--- |    ****    ****|
--- |    ****    ****|
--- |****    ****    |
--- |****    ****    |
--- |    ****    ****|
--- |    ****    ****|
--- |****    ****    |
--- |****    ****    |
--- .----------------.
-
---chessboard :: Int -> Board
-
-
--- with the following function you can print such boards:
-
---chess :: Int -> IO()
---chess n = printBoardWithEdge (chessboard n)
-
-
-
---replace below the 3x3 answer by your answer for the 8x8 board 
-
-{-
- .----------------.
-|    ****    ****|
-|    ****    ****|
-|****    ****    |
-|****    ****    |
-|    ****    ****|
-|    ****    ****|
-|****    ****    |
-|****    ****    |
-.----------------.
--}
