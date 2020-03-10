@@ -39,6 +39,10 @@ feboNumber :: Int -> Int
 feboNumber 0 = 0
 feboNumber 1 = 1
 feboNumber x = x + feboNumber(x-1)
+
+tomRi n
+ | n > 100 = n-10
+ |otherwise = tomRi(tomRi(n+11))
    
 filter1 test []     = []
 filter1 test (l:ls) 

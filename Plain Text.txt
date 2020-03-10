@@ -62,13 +62,11 @@ retired (ni,age,balance) = (age > 67)
 
 -- Part b)
 deposit :: Customer -> Float -> Customer
-deposit (ni,age,balance) addToBalance = (ni,age,balance + addToBalance)
+
 
 -- Part c)
 withdraw :: Customer -> Float -> Customer
-withdraw (ni,age,balance) withdrawFromBalance 
-   | balance > withdrawFromBalance  = (ni,age,balance - withdrawFromBalance)
-   | otherwise                      = error "not enough money"
+
 
 -- Part d)
 credit :: Bank -> [Customer]
@@ -82,13 +80,10 @@ credit bankAccount = [(ni,age,balance) |(ni,age,balance)<-bankAccount, balance>0
 -----------------------------------------------------------------
 
 cubeOdds :: [Int]-> [Int]
-cubeOdds list = [ x * x * x | x<-list, x `mod` 2 == 1]  
+
 
 cubeOdds2 :: [Int]-> [Int]
-cubeOdds2 newList =  map cube (filter isOdd newList )
-                        where  
-                        isOdd  x = (x `mod` 2 == 1) 
-                        cube x = x^3
+cubeOdds2 newList =  
                         
 
 
@@ -102,7 +97,7 @@ cubeOdds2 newList =  map cube (filter isOdd newList )
 
 addIndex :: [Int] -> [(Int,Int)]
 
-addIndex list = zip [1..]list
+
 
 ------------------------------------------------
 ---- Exercise 5. ?? 
@@ -135,6 +130,6 @@ replicate number word  = [word| y<-[1..number]]
 --repeat n string should repeat the input string n times
 -- example
 --replicate 3 "test" = ["test","test","test"]
-get3rd (_,_,y) = y
+
 
 
