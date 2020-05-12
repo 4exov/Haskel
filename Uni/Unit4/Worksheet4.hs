@@ -34,17 +34,31 @@ removeNth n list = [l | l<-list,l/=n]
 -- Exercise 3
 ---------------------------------------------------------------------
 
---yoursort ::  [Int] -> [Int]
-
+yoursort ::  [Int] -> [Int]
+yoursort [] =[]
+yoursort (a:as) = large ++ [a]++ small
+                  where large = yoursort[b | b<-as, b>=a]
+                        small = yoursort[b | b<-as, b<a]
 
 ----------------------------------------------------------------------
 -- Exercise 4
 ---------------------------------------------------------------------
 
---yournewsort ::  [String] -> [String]
-
+yournewsort ::  [String] -> [String]
+yournewsort  [] = []
+yournewsort  (a:as) = bigLexo++ [a]  ++smalLexo
+                      where bigLexo =  yournewsort [ b | b<-as, b<a]
+                            smalLexo = yournewsort [ b | b<-as, b>a]
 ----------------------------------------------------------------------
 -- Exercise 5
 ---------------------------------------------------------------------
 
---hoMergeSort :: (a -> b) -> [a] -> [a]
+hoMergeSort :: (a -> b) -> [a] -> [a]
+fun  [] = []
+
+hoMergeSort fun [] = []
+hoMergeSort fun (l:ls) =
+   if fun l
+      then 
+
+

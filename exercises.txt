@@ -1,0 +1,4 @@
+--recursion and listComp
+--basicFunctions.hs: tail,head, fibo,map,zip,filter,lenght,factorial
+--add extra function every day
+--change odd numbers but keep even numbers on their places. for example [2,3,1,4,7,12,17,28] will be [2,1,3,4,7,12,17,28]

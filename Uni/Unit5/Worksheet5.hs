@@ -142,18 +142,13 @@ type Board = [[Tile]]
 
 -- Part f)(??????????????????)
 
--- So, if we think of a board as a column of rows of tiles,
--- then we can convert a board into a tile using  
--- col2tile and row2tile
---Board = [[Tile]]
+
 
 --board2tile :: Board ->Tile
 
 
 -- Part g)(??????????????????)
 
--- if we can now make a function that "prints" an adge around a tile,
---  we can print boards with an edge.
 
 --printBoardWithEdge :: Board -> IO()
 --printBoardWithEdge board = printTile (edge (board2tile board ))

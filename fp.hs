@@ -42,6 +42,11 @@ tomRi n
  | n > 100 = n-10
  |otherwise = tomRi(tomRi(n+11))
    
+--change odd numbers but keep even numbers on their places. for example [2,3,1,4,7,12,17,28] will be [2,1,3,4,7,12,17,28]
+a = [2,3,1,4,7,12,17,28] 
+oddSorted a = [b | b <-a,(b`mod`2 /= 0)]
 
+
+--line AAAAABBBHEFRHHHEEWWWDH return A5B3HEFRH3E2W3DH
 
 
